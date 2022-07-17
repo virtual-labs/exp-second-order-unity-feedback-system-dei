@@ -4,7 +4,7 @@
 <b>Discipline | <b>Electrical Engineering
 :--|:--|
 <b> Lab | <b> Control Engineering Virtual Laboratory (PCC-EE17)
-<b> Experiment|     <b> Find and Plot the step and impulse response for a second-order unity feedback system
+<b> Experiment|     <b> 3. Find and Plot the step and impulse response for a second-order unity feedback system
 
 ### About the Experiment 
 
