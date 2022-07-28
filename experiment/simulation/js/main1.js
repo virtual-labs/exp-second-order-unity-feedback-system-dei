@@ -32,39 +32,37 @@ function addval() {
     a2 = parseInt(p);
     b2 = parseInt(q);
     c2 = parseInt(r) + 1;
-    var a3 = 1 / c2;
     var c3 = -1 * b2 / 2 / a2;
-    var b3 = -1 / c2;
     var c1 = c2 - b2 * b2 / 4 / a2;
     console.log(c1);
     if (c1 < 0) {
         c4 = Math.sqrt(-1 * c1);
     } else
         c4 = Math.sqrt(c1);
-    b4 = -1 * a3 * b2 / 2 / a2 / c4;
+    var a3 = 1 / a2 / c4;
 
     var maxl, stepl;
-    if (amplitude(a3, b3, b4, c1, c3, c4, 10) == amplitude(a3, b3, b4, c1, c3, c4, 9.8)) {
+    if (amplitude(a3, c1, c3, c4, 10) == amplitude(a3, c1, c3, c4, 9.8)) {
         maxl = 10;
         stepl = 0.05;
-    } else if (amplitude(a3, b3, b4, c1, c3, c4, 25) == amplitude(a3, b3, b4, c1, c3, c4, 25.5)) {
+    } else if (amplitude(a3, c1, c3, c4, 25) == amplitude(a3, c1, c3, c4, 25.5)) {
         maxl = 25;
         stepl = 0.125;
-    } else if (amplitude(a3, b3, b4, c1, c3, c4, 50) == amplitude(a3, b3, b4, c1, c3, c4, 49)) {
+    } else if (amplitude(a3, c1, c3, c4, 50) == amplitude(a3, c1, c3, c4, 49)) {
         maxl = 50;
         stepl = 0.25;
-    } else if (amplitude(a3, b3, b4, c1, c3, c4, 100) == amplitude(a3, b3, b4, c1, c3, c4, 98)) {
+    } else if (amplitude(a3, c1, c3, c4, 100) == amplitude(a3, c1, c3, c4, 98)) {
         maxl = 100;
         stepl = 0.5;
-    } else if (amplitude(a3, b3, b4, c1, c3, c4, 200) == amplitude(a3, b3, b4, c1, c3, c4, 196)) {
+    } else if (amplitude(a3, c1, c3, c4, 200) == amplitude(a3, c1, c3, c4, 196)) {
         maxl = 200;
         stepl = 1;
     } else {
-        maxl = 1;
-        stepl = 0.005;
+        maxl = 300;
+        stepl = 1.5;
     }
     for (let i = 0; i <= maxl; i = i + stepl) {
-        dat.push(amplitud(a3, b3, b4, c1, c3, c4, i));
+        dat.push(amplitud(a3, c1, c3, c4, i));
         lab.push(i.toFixed(1));
     }
     lc = 1;
@@ -87,7 +85,7 @@ function addval() {
         document.getElementById("matwork").classList.remove('mat');
         var numerator = "$${\\frac{";
         if (a != 0)
-            numerator = numerator + a + "s^2";
+            numerator = numerator + a + "s";
         if (b != 0)
             if (a != 0)
                 numerator = numerator + " + " + b;
@@ -113,7 +111,7 @@ function addval() {
         document.getElementById("out2").innerHTML = eqn;
         var numerator = "$${\\frac{";
         if (a != 0)
-            numerator = numerator + a + "s^2";
+            numerator = numerator + a + "s";
         if (b != 0)
             if (a != 0)
                 numerator = numerator + " + " + b;
@@ -140,9 +138,9 @@ function addval() {
         var output;
         document.getElementById("out1").innerHTML = eqn;
         if (c1 > 0)
-            eqn = "$${" + a3.toFixed(5) + b3.toFixed(4) + " * e^{" + c3.toFixed(2) + "*t} * " + "cos({" + c4.toFixed(2) + "})....}$$" + "   $${...." + b4.toFixed(4) + " *  e^{" + c3.toFixed(2) + "*t} * " + "sin({" + c4.toFixed(2) + "}) " + "}$$";
+            eqn = "$${" + a3.toFixed(5) + " * e^{" + c3.toFixed(2) + "*t} * " + "sin({" + c4.toFixed(2) + "}) " + "}$$";
         else
-            eqn = "$${" + a3.toFixed(5) + b3.toFixed(4) + " * e^{" + c3.toFixed(2) + "*t} * " + "cosh({" + c4.toFixed(2) + "})....}$$" + "$${...." + b4.toFixed(4) + " * e^{" + c3.toFixed(2) + "*t} * " + "sinh({" + c4.toFixed(2) + "}) " + "}$$";
+            eqn = "$${" + a3.toFixed(5) + " * e^{" + c3.toFixed(2) + "*t} * " + "sinh({" + c4.toFixed(2) + "}) " + "}$$";
         document.getElementById("tanswer").innerHTML = eqn;
         var j, k;
 
@@ -221,8 +219,8 @@ function cwidth(ms) {
         datasets: [{
             label: "Amplitude",
             data: dat,
-            fill: false,
             pointRadius: 1,
+            fill: false,
             borderColor: 'rgb(75, 192, 192)',
             tension: 0.1
         }]
@@ -233,7 +231,7 @@ function cwidth(ms) {
         options: {
             title: {
                 display: true,
-                text: "Step Response",
+                text: "Impulse Response",
                 fontSize: 14,
             },
             maintainAspectRatio: false,
@@ -300,23 +298,23 @@ function dispmenu(val) {
     }
 }
 
-function amplitude(a3, b3, b4, c1, c3, c4, t) {
+function amplitude(a3, c1, c3, c4, t) {
     var cal;
     if (c1 < 0) {
-        cal = a3 + b3 * Math.pow(Math.E, c3 * t) * Math.cosh(c4 * t) + b4 * Math.pow(Math.E, c3 * t) * Math.sinh(c4 * t)
+        cal = a3 * Math.pow(Math.E, c3 * t) * Math.sinh(c4 * t)
     } else {
-        cal = a3 + b3 * Math.pow(Math.E, c3 * t) * Math.cos(c4 * t) + b4 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
+        cal = a3 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
     }
     cal = cal.toFixed(4);
     return cal;
 }
 
-function amplitud(a3, b3, b4, c1, c3, c4, t) {
+function amplitud(a3, c1, c3, c4, t) {
     var cal;
     if (c1 < 0) {
-        cal = a3 + b3 * Math.pow(Math.E, c3 * t) * Math.cosh(c4 * t) + b4 * Math.pow(Math.E, c3 * t) * Math.sinh(c4 * t)
+        cal = a3 * Math.pow(Math.E, c3 * t) * Math.sinh(c4 * t)
     } else {
-        cal = a3 + b3 * Math.pow(Math.E, c3 * t) * Math.cos(c4 * t) + b4 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
+        cal = a3 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
     }
     return cal;
 }
