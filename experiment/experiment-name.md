@@ -1,1 +1,1 @@
-## Experiment name
+Determination of step and impulse response for a second order unity feedback system
