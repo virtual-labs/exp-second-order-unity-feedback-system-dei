@@ -25,6 +25,6 @@ If the dumping ratio is between 0 and 1, the system poles are complex conjugates
 <br>
 <strong>Peak time (t<sub>p</sub>):</strong> The peak time is time required for the response to reach the first peak of overshoot.
 <strong>Maximum (percent) overshoot (M<sub>p</sub>):</strong> The maximum overshoot is the maximum peak value of the response curve measured from unity. If the final steady-state value of the response differs from unity, then it is common to use the maximum percent overshoot. It is defined by:
-$${\frac{y(C<sub>p</sub>)-C(&infin;)}{&infin;}*100}$$
+$${\frac{y(C<sub>p</sub>)-C(&infin;)}{&infin;}100}$$
 
 <strong> Settling time:</strong> The settling time is the time required for the response curve to reach and stay within a range about the final value of size specified by absolute percentage  of the final value (usually 2% or 5%). The sttling time is related to the largest constant of the control system.
