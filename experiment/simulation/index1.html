@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
 </head>
 <body>
 
 	<header>
 	
 	<select id="pagechanger">
-		<option value="1" selected>
+		<option value="1" >
 			 To determine Step response of 2nd order system 
 		</option>
-		<option value="2" >
+		<option value="2" selected>
 			To determine Impulse response of 2nd order system 
 		</option>
 	</select>
@@ -21,6 +21,7 @@
 	<a href="../simulation_1/index1.html" id="sm2" style="display: none;"></a>
 	<button id="input_button" onclick="changepage()">Select</button>
 </header>
+
 	<div id="simulation-cont">
 	<div id="enter-val">
 		<div id="input-statements">	
@@ -55,6 +56,7 @@
 				<option value="10" label="100%"></option>
 			</datalist>
 		</div>
+		
 	</div>
 	<div class="matlab-working mat" id="matwork" title="Please enter the values of coeffecients of the equation first">
 		<div class="program" >
@@ -66,7 +68,7 @@
 				<span id="out1" class="genout"></span>
 				<span id="line2">Closed loop transfer equation</span><br>
 				<span id="out2" class="genout"></span>
-				<span id="line3">Step response graph</span><br>
+				<span id="line3">Impulse response graph</span><br>
 				<div id="tanswer"></div>
 				<div class="mob-chart">
 				<div id="chartcont">
@@ -89,7 +91,6 @@
 		<div id="chartcont1">
 			<canvas id="myChart" style="width:100%;"></canvas>
 		</div>
-		
 	</div>
 </div>
 	<div class="conclusions">
@@ -97,7 +98,7 @@
 		<span id="fconclusions">Conclusions will show here</span>
 	</div>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./js/main1.js"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
 </body>
 </html>
