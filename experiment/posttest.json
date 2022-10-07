@@ -1,39 +1,61 @@
 {
-  "version": 2.0,
-  "questions": [
-    {
-      "question": "This is a Sample Question 1?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
-    },
-    {
-      "question": "This is a Sample Question 2?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
-    }
-  ]
+    "version": 2.0,
+    "questions": [{
+            "question": "The causal system represented is <img src = \".images/posttestq1.svg\"> ?",
+            "answers": {
+                "a": "Underdamped",
+                "b": "Underdamped",
+                "c": "Critically Damped",
+                "d": "Undamped"
+            },
+            "correctAnswer": "c",
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "Overall transfer function of a system is given below, system is characterized as <img src = \".images/posttestq2.svg\">?",
+            "answers": {
+                "a": "Underdamped",
+                "b": "Underdamped",
+                "c": "Critically Damped",
+                "d": "Undamped"
+            },
+            "correctAnswer": "a",
+            "difficulty": "intermediate"
+        },
+        {
+            "question": "A two stage amplifier with negative feedback has an overshoot when damping factor is:",
+            "answers": {
+                "a": "Less than unity ",
+                "b": "Zero",
+                "c": "Greater than unity",
+                "d": "Negative"
+            },
+            "correctAnswer": "a",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "What will be the Step Response of <img src = \".images/posttestq4.svg\">",
+            "answers": {
+                "a": "0.125-0.125*e<sup>-0.25*t</sup>cos(2.78)-0.112*e<sup>-0.25*t</sup>sin(2.78)",
+                "b": "0.125+0.125*e<sup>-0.25*t</sup>cos(2.78)-0.112*e<sup>+0.25*t</sup>sin(2.78)",
+                "c": "0.112-0.112*e<sup>-0.25*t</sup>cos(2.78)-0.125*e<sup>-0.25*t</sup>sin(2.78)",
+                "d": "0.112+0.112*e<sup>-0.25*t</sup>cos(2.78)+0.125*e<sup>-0.25*t</sup>sin(2.78)"
+            },
+            "correctAnswer": "a",
+            "difficulty": "difficult"
+        },
+        {
+            "question": "What will be the Step Response of <img src = \".images/posttestq5.svg\">",
+            "answers": {
+                "a": "0.254*e<sup>-0.25*t</sup>cos(1.97)",
+                "b": "0.254*e<sup>-0.25*t</sup>sin(1.97)",
+                "c": "0.254*e<sup>0.25*t</sup>sin(1.97)",
+                "d": "0.254*e<sup>0.25*t</sup>cos(1.97)"
+            },
+            "correctAnswer": "b",
+            "difficulty": "difficult"
+        }
+
+
+    ]
 }
