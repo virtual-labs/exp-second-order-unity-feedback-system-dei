@@ -12,6 +12,7 @@ function changepage() {
     else
         document.getElementById("sm2").click();
 }
+var conclusion;
 
 function addval() {
     lab = [];
@@ -27,10 +28,21 @@ function addval() {
     var x1, y1;
     var ni = 0,
         di = 0;
+
     a1 = parseInt(a);
     b1 = parseInt(b);
     a2 = parseInt(p);
     b2 = parseInt(q);
+    var omega = Math.sqrt(parseInt(r));
+    var zeta = b2 / 2 / omega;
+    if (zeta = 0)
+        conclusion = "The amplitude of the system response does not change with time, therefore system is undamped";
+    else if (zeta > 0 && zeta < 1)
+        conclusion = "The system response is oscillated through the equilibrium position, with oscillatins gradually decreasing over time therefore system is under damped";
+    else if (zeta = 1)
+        conclusion = "The system response is ramp up quickly to the equilibrium position without oscillating, and passes it once at most. Therefore system is critical damped";
+    else
+        conclusion = "The system response moves more slowly toward equilibrium than critical damped system, therefore system is over damped."
     c2 = parseInt(r) + b1;
     var a3 = 1 / c2;
     var c3 = -1 * b2 / 2 / a2;
@@ -79,6 +91,7 @@ function addval() {
         document.getElementById(out).setAttribute("style", "display:none");
     }
     if (mto) {
+        document.getElementById("fconclusions").innerHTML = "Conclusions will show here";
         document.getElementById("matwork").title = "";
         document.getElementById("mrun").disabled = false;
         document.getElementById("matwork").setAttribute("style", "opacity:1");
@@ -156,7 +169,7 @@ function addval() {
     } else {
         mto = 1;
 
-
+        document.getElementById("fconclusions").innerHTML = "Conclusions will show here";
         document.getElementById("mrun").disabled = true;
         document.getElementById("mrun").classList.remove('mrunenabled', 'mrundisabled');
         document.getElementById("tanswer").setAttribute("style", "display:none");
@@ -193,6 +206,7 @@ function runprog(i) {
     if (lc <= 3)
         highlightline(lc);
     else {
+        document.getElementById("fconclusions").innerHTML = conclusion;
         document.getElementById("line3").setAttribute("style", "color:black;");
         document.getElementById("mrun").disabled = true;
         var ms = window.matchMedia("screen and (max-width:950px)");
