@@ -33,28 +33,35 @@ function addval() {
     b1 = parseInt(b);
     a2 = parseInt(p);
     b2 = parseInt(q);
-    var omega = Math.sqrt(parseInt(r));
+
+    c2 = parseInt(r) + b1;
+    var omega = Math.sqrt(c2);
     var zeta = b2 / 2 / omega;
-    if (zeta = 0)
+    if (zeta == 0)
         conclusion = "The amplitude of the system response does not change with time, therefore system is undamped";
     else if (zeta > 0 && zeta < 1)
         conclusion = "The system response is oscillated through the equilibrium position, with oscillatins gradually decreasing over time therefore system is under damped";
-    else if (zeta = 1)
+    else if (zeta == 1)
         conclusion = "The system response is ramp up quickly to the equilibrium position without oscillating, and passes it once at most. Therefore system is critical damped";
     else
         conclusion = "The system response moves more slowly toward equilibrium than critical damped system, therefore system is over damped."
-    c2 = parseInt(r) + b1;
-    var a3 = 1 / c2;
+    console.log(omega);
+    console.log(zeta);
+    var a3 = b1 / c2;
     var c3 = -1 * b2 / 2 / a2;
-    var b3 = -1 / c2;
-    var c1 = c2 - b2 * b2 / 4 / a2;
-    console.log(c1);
+    var b3 = -1 * b1 / c2;
+    var c1 = 4 * a2 * c2 - b2 * b2;
     if (c1 < 0) {
-        c4 = Math.sqrt(-1 * c1);
+        c4 = Math.sqrt(-1 * c1) / 2 / a2;
     } else
-        c4 = Math.sqrt(c1);
-    b4 = -1 * a3 * b2 / 2 / a2 / c4;
-
+        c4 = Math.sqrt(c1) / 2 / a2;
+    var c5 = c4 * 2 * a2;
+    if (c5 != 0)
+        b4 = b3 / c5;
+    else
+        b4 = 0;
+    if (b2 == 0)
+        b4 = 0;
     var maxl, stepl;
     if (amplitude(a3, b3, b4, c1, c3, c4, 10) == amplitude(a3, b3, b4, c1, c3, c4, 9.8)) {
         maxl = 10;
@@ -72,8 +79,8 @@ function addval() {
         maxl = 200;
         stepl = 1;
     } else {
-        maxl = 1;
-        stepl = 0.005;
+        maxl = 1000;
+        stepl = 5;
     }
     for (let i = 0; i <= maxl; i = i + stepl) {
         dat.push(amplitud(a3, b3, b4, c1, c3, c4, i));
@@ -210,7 +217,6 @@ function runprog(i) {
         document.getElementById("line3").setAttribute("style", "color:black;");
         document.getElementById("mrun").disabled = true;
         var ms = window.matchMedia("screen and (max-width:950px)");
-        console.log(ms);
         widthcheck(ms);
         ms.addListener(widthcheck);
         document.getElementById("mrun").disabled = true;

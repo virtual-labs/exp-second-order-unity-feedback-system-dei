@@ -33,48 +33,78 @@ function addval() {
     a2 = parseInt(p);
     b2 = parseInt(q);
     c2 = parseInt(r) + b1;
-    var omega = Math.sqrt(parseInt(r));
+    var omega = Math.sqrt(c2);
     var zeta = b2 / 2 / omega;
-    if (zeta = 0)
+    if (zeta == 0)
         conclusion = "The amplitude of the system response does not change with time, therefore system is undamped";
     else if (zeta > 0 && zeta < 1)
         conclusion = "The system response is oscillated through the equilibrium position, with oscillatins gradually decreasing over time therefore system is under damped";
-    else if (zeta = 1)
+    else if (zeta == 1)
         conclusion = "The system response is ramp up quickly to the equilibrium position without oscillating, and passes it once at most. Therefore system is critical damped";
     else
         conclusion = "The system response moves more slowly toward equilibrium than critical damped system, therefore system is over damped."
     var c3 = -1 * b2 / 2 / a2;
-    var c1 = c2 - b2 * b2 / 4 / a2;
-    console.log(c1);
+    var c1 = 4 * a2 - b2 * b2 / c2;
+    c1 = c1 / a2 / a2
+        //    console.log(c1);
     if (c1 < 0) {
         c4 = Math.sqrt(-1 * c1);
     } else
         c4 = Math.sqrt(c1);
     var a3 = 1 / a2 / c4;
-
-    var maxl, stepl;
-    if (amplitude(a3, c1, c3, c4, 10) == amplitude(a3, c1, c3, c4, 9.8)) {
-        maxl = 10;
-        stepl = 0.05;
-    } else if (amplitude(a3, c1, c3, c4, 25) == amplitude(a3, c1, c3, c4, 25.5)) {
-        maxl = 25;
-        stepl = 0.125;
-    } else if (amplitude(a3, c1, c3, c4, 50) == amplitude(a3, c1, c3, c4, 49)) {
-        maxl = 50;
-        stepl = 0.25;
-    } else if (amplitude(a3, c1, c3, c4, 100) == amplitude(a3, c1, c3, c4, 98)) {
-        maxl = 100;
-        stepl = 0.5;
-    } else if (amplitude(a3, c1, c3, c4, 200) == amplitude(a3, c1, c3, c4, 196)) {
-        maxl = 200;
-        stepl = 1;
+    if (c1 != 0) {
+        var maxl, stepl;
+        if (amplitude(a3, c1, c3, c4, 10) == amplitude(a3, c1, c3, c4, 9.8)) {
+            maxl = 10;
+            stepl = 0.05;
+        } else if (amplitude(a3, c1, c3, c4, 25) == amplitude(a3, c1, c3, c4, 25.5)) {
+            maxl = 25;
+            stepl = 0.125;
+        } else if (amplitude(a3, c1, c3, c4, 50) == amplitude(a3, c1, c3, c4, 49)) {
+            maxl = 50;
+            stepl = 0.25;
+        } else if (amplitude(a3, c1, c3, c4, 100) == amplitude(a3, c1, c3, c4, 98)) {
+            maxl = 100;
+            stepl = 0.5;
+        } else if (amplitude(a3, c1, c3, c4, 200) == amplitude(a3, c1, c3, c4, 196)) {
+            maxl = 200;
+            stepl = 1;
+        } else {
+            maxl = 300;
+            stepl = 1.5;
+        }
+        for (let i = 0; i <= maxl; i = i + stepl) {
+            dat.push(amplitud(a3, c1, c3, c4, i));
+            lab.push(i.toFixed(1));
+        }
     } else {
-        maxl = 300;
-        stepl = 1.5;
-    }
-    for (let i = 0; i <= maxl; i = i + stepl) {
-        dat.push(amplitud(a3, c1, c3, c4, i));
-        lab.push(i.toFixed(1));
+        co1 = 1 / a2;
+        co2 = Math.sqrt(c2 / a2);
+        var maxl, stepl;
+        if (amplitudeden(co1, co2, 10) == amplitude(co1, co2, 9.8)) {
+            maxl = 10;
+            stepl = 0.05;
+        } else if (amplitude(co1, co2, 25) == amplitude(co1, co2, 25.5)) {
+            maxl = 25;
+            stepl = 0.125;
+        } else if (amplitude(co1, co2, 50) == amplitude(co1, co2, 49)) {
+            maxl = 50;
+            stepl = 0.25;
+        } else if (amplitude(co1, co2, 100) == amplitude(a3, c1, c3, c4, 98)) {
+            maxl = 100;
+            stepl = 0.5;
+        } else if (amplitude(co1, co2, 200) == amplitude(co1, co2, 196)) {
+            maxl = 200;
+            stepl = 1;
+        } else {
+            maxl = 300;
+            stepl = 1.5;
+        }
+        for (let i = 0; i <= maxl; i = i + stepl) {
+            dat.push(amplitudede(co1, co2, i));
+            lab.push(i.toFixed(1));
+        }
+
     }
     lc = 1;
     document.getElementById("line1").setAttribute("style", "color:blue");
@@ -149,10 +179,14 @@ function addval() {
 
         var output;
         document.getElementById("out1").innerHTML = eqn;
-        if (c1 > 0)
-            eqn = "$${" + a3.toFixed(5) + " * e^{" + c3.toFixed(2) + "*t} * " + "sin({" + c4.toFixed(2) + "}) " + "}$$";
-        else
-            eqn = "$${" + a3.toFixed(5) + " * e^{" + c3.toFixed(2) + "*t} * " + "sinh({" + c4.toFixed(2) + "}) " + "}$$";
+        if (c1 != 0) {
+            if (c1 > 0)
+                eqn = "$${" + a3.toFixed(5) + " * e^{" + c3.toFixed(2) + "*t} * " + "sin({" + c4.toFixed(2) + "*t}) " + "}$$";
+            else
+                eqn = "$${" + a3.toFixed(5) + " * e^{" + c3.toFixed(2) + "*t} * " + "sinh({" + c4.toFixed(2) + "*t}) " + "}$$";
+        } else {
+            eqn = "$${" + co1.toFixed(5) + "*e^{-1*" + co2.toFixed(2) + "*t}*" + "t}$$"
+        }
         document.getElementById("tanswer").innerHTML = eqn;
         var j, k;
 
@@ -326,5 +360,15 @@ function amplitud(a3, c1, c3, c4, t) {
     } else {
         cal = a3 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
     }
+    return cal;
+}
+
+function amplitudeden(coo1, coo2, t) {
+    var cal = coo1 * Math.pow(Math.E, -1 * coo2 * t) * t;
+    return cal.toFixed(4);
+}
+
+function amplitudede(coo1, coo2, t) {
+    var cal = coo1 * Math.pow(Math.E, -1 * coo2 * t) * t;
     return cal;
 }
