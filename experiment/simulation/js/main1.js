@@ -344,22 +344,15 @@ function dispmenu(val) {
 
 function amplitude(a3, c1, c3, c4, t) {
     var cal;
-    if (c1 < 0) {
-        cal = a3 * Math.pow(Math.E, c3 * t) * Math.sinh(c4 * t)
-    } else {
-        cal = a3 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
-    }
+    cal = a3 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
     cal = cal.toFixed(4);
     return cal;
 }
 
 function amplitud(a3, c1, c3, c4, t) {
     var cal;
-    if (c1 < 0) {
-        cal = a3 * Math.pow(Math.E, c3 * t) * Math.sinh(c4 * t)
-    } else {
-        cal = a3 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
-    }
+    cal = a3 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
+
     return cal;
 }
 

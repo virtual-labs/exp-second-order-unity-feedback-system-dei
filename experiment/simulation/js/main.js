@@ -63,28 +63,57 @@ function addval() {
     if (b2 == 0)
         b4 = 0;
     var maxl, stepl;
-    if (amplitude(a3, b3, b4, c1, c3, c4, 10) == amplitude(a3, b3, b4, c1, c3, c4, 9.8)) {
-        maxl = 10;
-        stepl = 0.05;
-    } else if (amplitude(a3, b3, b4, c1, c3, c4, 25) == amplitude(a3, b3, b4, c1, c3, c4, 25.5)) {
-        maxl = 25;
-        stepl = 0.125;
-    } else if (amplitude(a3, b3, b4, c1, c3, c4, 50) == amplitude(a3, b3, b4, c1, c3, c4, 49)) {
-        maxl = 50;
-        stepl = 0.25;
-    } else if (amplitude(a3, b3, b4, c1, c3, c4, 100) == amplitude(a3, b3, b4, c1, c3, c4, 98)) {
-        maxl = 100;
-        stepl = 0.5;
-    } else if (amplitude(a3, b3, b4, c1, c3, c4, 200) == amplitude(a3, b3, b4, c1, c3, c4, 196)) {
-        maxl = 200;
-        stepl = 1;
+    if (c1 != 0) {
+        if (amplitude(a3, b3, b4, c1, c3, c4, 10) == amplitude(a3, b3, b4, c1, c3, c4, 9.8)) {
+            maxl = 10;
+            stepl = 0.05;
+        } else if (amplitude(a3, b3, b4, c1, c3, c4, 25) == amplitude(a3, b3, b4, c1, c3, c4, 25.5)) {
+            maxl = 25;
+            stepl = 0.125;
+        } else if (amplitude(a3, b3, b4, c1, c3, c4, 50) == amplitude(a3, b3, b4, c1, c3, c4, 49)) {
+            maxl = 50;
+            stepl = 0.25;
+        } else if (amplitude(a3, b3, b4, c1, c3, c4, 100) == amplitude(a3, b3, b4, c1, c3, c4, 98)) {
+            maxl = 100;
+            stepl = 0.5;
+        } else if (amplitude(a3, b3, b4, c1, c3, c4, 200) == amplitude(a3, b3, b4, c1, c3, c4, 196)) {
+            maxl = 200;
+            stepl = 1;
+        } else {
+            maxl = 1000;
+            stepl = 5;
+        }
+        for (let i = 0; i <= maxl; i = i + stepl) {
+            dat.push(amplitud(a3, b3, b4, c1, c3, c4, i));
+            lab.push(i.toFixed(1));
+        }
     } else {
-        maxl = 1000;
-        stepl = 5;
-    }
-    for (let i = 0; i <= maxl; i = i + stepl) {
-        dat.push(amplitud(a3, b3, b4, c1, c3, c4, i));
-        lab.push(i.toFixed(1));
+        var co1 = b1 / c2;
+        var co2 = Math.sqrt(c2 / a2);
+        var co3 = co1 / Math.sqrt(a2);
+        if (amplitudeden(co1, co2, co3, 10) == amplitudeden(co1, co2, co3, 9.8)) {
+            maxl = 10;
+            stepl = 0.05;
+        } else if (amplitudeden(co1, co2, co3, 25) == amplitudeden(co1, co2, co3, 25.5)) {
+            maxl = 25;
+            stepl = 0.125;
+        } else if (amplitudeden(co1, co2, co3, 50) == amplitudeden(co1, co2, co3, 49)) {
+            maxl = 50;
+            stepl = 0.25;
+        } else if (amplitudeden(co1, co2, co3, 100) == amplitudeden(co1, co2, co3, 98)) {
+            maxl = 100;
+            stepl = 0.5;
+        } else if (amplitudeden(co1, co2, co3, 200) == amplitudeden(co1, co2, co3, 196)) {
+            maxl = 200;
+            stepl = 1;
+        } else {
+            maxl = 1000;
+            stepl = 5;
+        }
+        for (let i = 0; i <= maxl; i = i + stepl) {
+            dat.push(amplitudede(co1, co2, co3, i));
+            lab.push(i.toFixed(1));
+        }
     }
     lc = 1;
     document.getElementById("line1").setAttribute("style", "color:blue");
@@ -161,6 +190,8 @@ function addval() {
         document.getElementById("out1").innerHTML = eqn;
         if (c1 > 0)
             eqn = "$${" + a3.toFixed(5) + b3.toFixed(4) + " * e^{" + c3.toFixed(2) + "*t} * " + "cos({" + c4.toFixed(2) + "})....}$$" + "   $${...." + b4.toFixed(4) + " *  e^{" + c3.toFixed(2) + "*t} * " + "sin({" + c4.toFixed(2) + "}) " + "}$$";
+        else if (c1 == 0)
+            eqn = "$${" + co1.toFixed(5) + "-1*" + co1.toFixed(4) + "* e^{-1*" + co2.toFixed(2) + "*t}" + "-1*" + co3.toFixed(4) + "*e^{-1*" + co2.toFixed(2) + "*t}*t}$$";
         else
             eqn = "$${" + a3.toFixed(5) + b3.toFixed(4) + " * e^{" + c3.toFixed(2) + "*t} * " + "cosh({" + c4.toFixed(2) + "})....}$$" + "$${...." + b4.toFixed(4) + " * e^{" + c3.toFixed(2) + "*t} * " + "sinh({" + c4.toFixed(2) + "}) " + "}$$";
         document.getElementById("tanswer").innerHTML = eqn;
@@ -337,4 +368,18 @@ function amplitud(a3, b3, b4, c1, c3, c4, t) {
         cal = a3 + b3 * Math.pow(Math.E, c3 * t) * Math.cos(c4 * t) + b4 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
     }
     return cal;
+}
+
+function amplitudeden(coo1, coo2, coo3, t) {
+    var cal;
+    cal = coo1 - coo1 * Math.pow(Math.E, -1 * coo2 * t) - coo3 * Math.pow(Math.E, -1 * coo2 * t) * t;
+    return cal.toFixed(4);
+
+}
+
+function amplitudede(coo1, coo2, coo3, t) {
+    var cal;
+    cal = coo1 - coo1 * Math.pow(Math.E, -1 * coo2 * t) - coo3 * Math.pow(Math.E, -1 * coo2 * t) * t;
+    return cal;
+
 }
