@@ -14,6 +14,9 @@ header {
     font-size: 20px;
     outline: none;
     position: relative;
+
+    left: 10%;
+
     top: 2.5vh;
 }
 
@@ -30,7 +33,9 @@ header {
     color: whitesmoke;
     height: 30px;
     width: 100px;
-    left: 5px;
+
+    left: 15%;
+
     border: none;
 }
 
@@ -47,15 +52,17 @@ body {
 #enter-val {
     width: 30%;
     float: left;
-    height: 79.1vh;
+
+    height: 65vh;
 }
 
 #input-statements {
     width: 100%;
-    height: 50%;
+
+    height: 70vh;
     background-color: aliceblue;
     padding: 10px 0;
-    border-bottom: 1px solid cadetblue;
+
 }
 
 .numerator {
@@ -65,9 +72,17 @@ body {
     text-align: center;
 }
 
+
+.numerator h3 {
+    position: relative;
+    top: 5px;
+    font-size: 15px;
+    margin: 15px 0px;
+}
+
 #input-statements p {
-    margin-top: 15px;
-    margin-bottom: 0;
+    margin: 15px 0px;
+
 }
 
 #datalist option {
@@ -81,6 +96,12 @@ body {
     text-align: center;
 }
 
+
+.denominator h3 {
+    font-size: 15px;
+    margin: 15px 0px;
+}
+
 .range-input {
     height: 12px;
     position: relative;
@@ -92,13 +113,10 @@ body {
     cursor: pointer;
 }
 
-#tanswer {
-    display: none;
-    color: darkcyan;
-}
 
 .displayed-eqn {
-    height: 56%;
+    height: 25%;
+
     width: 100%;
     background-color: aliceblue;
     color: cadetblue;
@@ -109,7 +127,9 @@ body {
     padding: 0 20px;
     top: 10px;
     position: relative;
-    height: 50%;
+
+    height: 80%;
+
 }
 
 #generated_eqn {
@@ -157,7 +177,8 @@ body {
     width: 35%;
     display: inline-block;
     background-color: aliceblue;
-    height: 89vh;
+
+    height: 75vh;
 }
 
 .genout {
@@ -170,7 +191,9 @@ body {
 
 .prog-window {
     background-color: whitesmoke;
-    height: 80%;
+
+    height: 75%;
+
     position: relative;
     left: 3%;
     width: 90%;
@@ -181,9 +204,6 @@ body {
     padding-bottom: 20px;
 }
 
-#enter-val h3 {
-    margin: 2px 0;
-}
 
 .mhead {
     position: relative;
@@ -240,7 +260,7 @@ body {
 
 #chartcont {
     width: 90%;
-    height: 350px;
+    height: 300px;
     padding: 10px;
     position: relative;
     border: 1px solid cadetblue;
@@ -252,7 +272,8 @@ body {
 
 #chartcont1 {
     width: 90%;
-    height: 350px;
+
+    height: 300px;
     padding: 10px;
     position: relative;
     border: 1px solid cadetblue;
@@ -263,7 +284,7 @@ body {
 
 .right-cont {
     width: 35vw;
-    height: 89vh;
+    height: 72vh;
     background-color: aliceblue;
     float: right;
 }
@@ -309,72 +330,11 @@ body {
     cursor: not-allowed;
 }
 
-
-/*@media screen and (max-width: 500px){
-  #enter-val{
-width: 100%;
-height: 60vh;
-}
-.matlab-working
-{
-  height: 60vh;
-width: 100%;}
-.program{
-border-bottom-left-radius: 0px;
-border-top-right-radius:20px ;
-}
-}
-@media screen and (max-height: 800px)
-{
-#enter-val{
-height: 75vh;
-}
-.matlab-working{
-height: 79vh;}
-}*/
-
 .container {
     display: inline-block;
     cursor: pointer;
 }
 
-.bar1,
-.bar2,
-.bar3 {
-    width: 30px;
-    height: 2.5px;
-    background-color: #333;
-    margin: 4px 0;
-    transition: 0.4s;
-}
-
-.change .bar1 {
-    -webkit-transform: rotate(-45deg) translate(-4.5px, 4px);
-    transform: rotate(-45deg) translate(-5.5px, 4px);
-}
-
-.change .bar2 {
-    opacity: 0;
-}
-
-.change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-4px, -5px);
-    transform: rotate(45deg) translate(-5px, -5px);
-}
-
-.menu-btn {
-    position: relative;
-    height: 100%;
-    width: 70px;
-    float: left;
-    outline: none;
-    border: none;
-    background-color: white;
-}
-
-.menu-btn:hover {
-    cursor: pointer;
-}
 
 header {
     background-color: white;
@@ -390,6 +350,27 @@ header {
     text-align: center;
     font-size: 20px;
     color: cadetblue;
+}
+
+
+.conclusions {
+    border-top: 4px solid dodgerblue;
+    height: 16vh;
+    position: relative;
+    background-color: aliceblue;
+}
+
+.conclusions h1 {
+    color: cadetblue;
+    position: relative;
+    background: none;
+    margin: 5px 0;
+}
+
+#fconclusions {
+    position: relative;
+    left: 2.5%;
+    color: dodgerblue;
 }
 
 @media screen and (max-width: 950px) {
@@ -414,6 +395,36 @@ header {
     }
 }
 
+
+@media screen and (max-height: 680px) {
+    #enter-val {
+        height: 79vh;
+    }
+    .prog-window {
+        height: 70%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .prog-window {
+        height: 77%;
+    }
+    #input_button {
+        transform: scale(0.8);
+        display: block;
+    }
+}
+
+@media screen and (max-height: 450px) {
+    #input-statements {
+        height: 105vh;
+    }
+    .matlab-working {
+        margin-top: 35vh;
+        height: 92vh;
+    }
+}
+
 @media screen and (min-height: 700px) {
     #enter-val {
         height: 62vh;
@@ -423,16 +434,22 @@ header {
 @media screen and (max-width: 400px) {
     #pagechanger {
         top: 0.5vh;
-        font-size: 10px;
+
+        left: 1px;
+        font-size: 14px;
+    }
+    #input_button {
+        transform: scale(0.8);
+        display: block;
     }
 }
 
 @media screen and (min-height: 1000px) {
     #enter-val {
-        height: 52vh;
+        height: 62vh;
     }
     .prog-window {
-        height: 88%;
+        height: 80%;
     }
 }
 
@@ -449,19 +466,10 @@ header {
     }
 }
 
-@media screen and (max-height: 680px) {
-    #enter-val {
-        height: 79vh;
-    }
-    .prog-window {
-        height: 75%;
-    }
-}
-
 @media screen and (max-width: 300px) {
     #pagechanger {
         top: 0.5vh;
-        font-size: 7px;
+        font-size: 10px;
     }
     @media screen and (max-height: 700px) {
         #enter-val {
@@ -484,7 +492,9 @@ header {
 @media screen and (max-width: 600px) {
     @media screen and (max-height: 750px) {
         #enter-val {
-            height: 80vh;
+
+            height: 62vh;
+
         }
     }
 }

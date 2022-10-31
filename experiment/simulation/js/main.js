@@ -12,13 +12,16 @@ function changepage() {
     else
         document.getElementById("sm2").click();
 }
+var conclusion;
+
 
 function addval() {
     lab = [];
     dat = [];
     var nums, dens;
     var a = "0";
-    var b = "1";
+
+    var b = document.getElementById("numc").value;
     var r = document.getElementById("denc").value;
     var p = document.getElementById("dena").value;
     var q = document.getElementById("denb").value;
@@ -27,45 +30,94 @@ function addval() {
     var x1, y1;
     var ni = 0,
         di = 0;
+
     a1 = parseInt(a);
     b1 = parseInt(b);
     a2 = parseInt(p);
     b2 = parseInt(q);
-    c2 = parseInt(r) + 1;
-    var a3 = 1 / c2;
-    var c3 = -1 * b2 / 2 / a2;
-    var b3 = -1 / c2;
-    var c1 = c2 - b2 * b2 / 4 / a2;
-    console.log(c1);
-    if (c1 < 0) {
-        c4 = Math.sqrt(-1 * c1);
-    } else
-        c4 = Math.sqrt(c1);
-    b4 = -1 * a3 * b2 / 2 / a2 / c4;
 
+
+    c2 = parseInt(r) + b1;
+    var omega = Math.sqrt(c2);
+    var zeta = b2 / 2 / omega;
+    if (zeta == 0)
+        conclusion = "The amplitude of the system response does not change with time, therefore system is undamped";
+    else if (zeta > 0 && zeta < 1)
+        conclusion = "The system response is oscillated through the equilibrium position, with oscillatins gradually decreasing over time therefore system is under damped";
+    else if (zeta == 1)
+        conclusion = "The system response is ramp up quickly to the equilibrium position without oscillating, and passes it once at most. Therefore system is critical damped";
+    else
+        conclusion = "The system response moves more slowly toward equilibrium than critical damped system, therefore system is over damped."
+    console.log(omega);
+    console.log(zeta);
+    var a3 = b1 / c2;
+    var c3 = -1 * b2 / 2 / a2;
+    var b3 = -1 * b1 / c2;
+    var c1 = 4 * a2 * c2 - b2 * b2;
+    if (c1 < 0) {
+        c4 = Math.sqrt(-1 * c1) / 2 / a2;
+    } else
+        c4 = Math.sqrt(c1) / 2 / a2;
+    var c5 = c4 * 2 * a2;
+    if (c5 != 0)
+        b4 = b3 / c5;
+    else
+        b4 = 0;
+    if (b2 == 0)
+        b4 = 0;
     var maxl, stepl;
-    if (amplitude(a3, b3, b4, c1, c3, c4, 10) == amplitude(a3, b3, b4, c1, c3, c4, 9.8)) {
-        maxl = 10;
-        stepl = 0.05;
-    } else if (amplitude(a3, b3, b4, c1, c3, c4, 25) == amplitude(a3, b3, b4, c1, c3, c4, 25.5)) {
-        maxl = 25;
-        stepl = 0.125;
-    } else if (amplitude(a3, b3, b4, c1, c3, c4, 50) == amplitude(a3, b3, b4, c1, c3, c4, 49)) {
-        maxl = 50;
-        stepl = 0.25;
-    } else if (amplitude(a3, b3, b4, c1, c3, c4, 100) == amplitude(a3, b3, b4, c1, c3, c4, 98)) {
-        maxl = 100;
-        stepl = 0.5;
-    } else if (amplitude(a3, b3, b4, c1, c3, c4, 200) == amplitude(a3, b3, b4, c1, c3, c4, 196)) {
-        maxl = 200;
-        stepl = 1;
+    if (c1 != 0) {
+        if (amplitude(a3, b3, b4, c1, c3, c4, 10) == amplitude(a3, b3, b4, c1, c3, c4, 9.8)) {
+            maxl = 10;
+            stepl = 0.05;
+        } else if (amplitude(a3, b3, b4, c1, c3, c4, 25) == amplitude(a3, b3, b4, c1, c3, c4, 25.5)) {
+            maxl = 25;
+            stepl = 0.125;
+        } else if (amplitude(a3, b3, b4, c1, c3, c4, 50) == amplitude(a3, b3, b4, c1, c3, c4, 49)) {
+            maxl = 50;
+            stepl = 0.25;
+        } else if (amplitude(a3, b3, b4, c1, c3, c4, 100) == amplitude(a3, b3, b4, c1, c3, c4, 98)) {
+            maxl = 100;
+            stepl = 0.5;
+        } else if (amplitude(a3, b3, b4, c1, c3, c4, 200) == amplitude(a3, b3, b4, c1, c3, c4, 196)) {
+            maxl = 200;
+            stepl = 1;
+        } else {
+            maxl = 1000;
+            stepl = 5;
+        }
+        for (let i = 0; i <= maxl; i = i + stepl) {
+            dat.push(amplitud(a3, b3, b4, c1, c3, c4, i));
+            lab.push(i.toFixed(1));
+        }
     } else {
-        maxl = 1;
-        stepl = 0.005;
-    }
-    for (let i = 0; i <= maxl; i = i + stepl) {
-        dat.push(amplitud(a3, b3, b4, c1, c3, c4, i));
-        lab.push(i.toFixed(1));
+        var co1 = b1 / c2;
+        var co2 = Math.sqrt(c2 / a2);
+        var co3 = co1 / Math.sqrt(a2);
+        if (amplitudeden(co1, co2, co3, 10) == amplitudeden(co1, co2, co3, 9.8)) {
+            maxl = 10;
+            stepl = 0.05;
+        } else if (amplitudeden(co1, co2, co3, 25) == amplitudeden(co1, co2, co3, 25.5)) {
+            maxl = 25;
+            stepl = 0.125;
+        } else if (amplitudeden(co1, co2, co3, 50) == amplitudeden(co1, co2, co3, 49)) {
+            maxl = 50;
+            stepl = 0.25;
+        } else if (amplitudeden(co1, co2, co3, 100) == amplitudeden(co1, co2, co3, 98)) {
+            maxl = 100;
+            stepl = 0.5;
+        } else if (amplitudeden(co1, co2, co3, 200) == amplitudeden(co1, co2, co3, 196)) {
+            maxl = 200;
+            stepl = 1;
+        } else {
+            maxl = 1000;
+            stepl = 5;
+        }
+        for (let i = 0; i <= maxl; i = i + stepl) {
+            dat.push(amplitudede(co1, co2, co3, i));
+            lab.push(i.toFixed(1));
+        }
+
     }
     lc = 1;
     document.getElementById("line1").setAttribute("style", "color:blue");
@@ -79,6 +131,9 @@ function addval() {
         document.getElementById(out).setAttribute("style", "display:none");
     }
     if (mto) {
+
+        document.getElementById("fconclusions").innerHTML = "Conclusions will show here";
+
         document.getElementById("matwork").title = "";
         document.getElementById("mrun").disabled = false;
         document.getElementById("matwork").setAttribute("style", "opacity:1");
@@ -109,7 +164,6 @@ function addval() {
                 denominator = denominator + c2.toFixed();
         denominator = denominator + "}}$$";
         var eqn = numerator + denominator;
-        document.getElementById("fgenerated_eqn").innerHTML = eqn;
         document.getElementById("out2").innerHTML = eqn;
         var numerator = "$${\\frac{";
         if (a != 0)
@@ -136,11 +190,13 @@ function addval() {
         denominator = denominator + "}}$$";
         eqn = numerator + denominator;
 
-        document.getElementById("generated_eqn").innerHTML = eqn;
         var output;
         document.getElementById("out1").innerHTML = eqn;
         if (c1 > 0)
             eqn = "$${" + a3.toFixed(5) + b3.toFixed(4) + " * e^{" + c3.toFixed(2) + "*t} * " + "cos({" + c4.toFixed(2) + "})....}$$" + "   $${...." + b4.toFixed(4) + " *  e^{" + c3.toFixed(2) + "*t} * " + "sin({" + c4.toFixed(2) + "}) " + "}$$";
+
+        else if (c1 == 0)
+            eqn = "$${" + co1.toFixed(5) + "-1*" + co1.toFixed(4) + "* e^{-1*" + co2.toFixed(2) + "*t}" + "-1*" + co3.toFixed(4) + "*e^{-1*" + co2.toFixed(2) + "*t}*t}$$";
         else
             eqn = "$${" + a3.toFixed(5) + b3.toFixed(4) + " * e^{" + c3.toFixed(2) + "*t} * " + "cosh({" + c4.toFixed(2) + "})....}$$" + "$${...." + b4.toFixed(4) + " * e^{" + c3.toFixed(2) + "*t} * " + "sinh({" + c4.toFixed(2) + "}) " + "}$$";
         document.getElementById("tanswer").innerHTML = eqn;
@@ -149,17 +205,13 @@ function addval() {
         var ms = window.matchMedia("(max-width:950px)");
         cwidth(ms);
         ms.addListener(cwidth);
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "generated_eqn"]);
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "fgenerated_eqn"]);
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, "out1"]);
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, "out2"]);
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, "tanswer"]);
     } else {
         mto = 1;
-        document.getElementById("generated_eqn").innerHTML = "$${ \\frac{ 1}{  ps + q} }$$";
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "generated_eqn"]);
-        document.getElementById("fgenerated_eqn").innerHTML = "$${ \\frac{ 1}{  ps + q+1} }$$";
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "fgenerated_eqn"]);
+
+        document.getElementById("fconclusions").innerHTML = "Conclusions will show here";
         document.getElementById("mrun").disabled = true;
         document.getElementById("mrun").classList.remove('mrunenabled', 'mrundisabled');
         document.getElementById("tanswer").setAttribute("style", "display:none");
@@ -176,6 +228,7 @@ function discriminant(a, b, c) {
 
 
 function showval() {
+    genval("numc", "lc");
     genval("dena", "lp");
     genval("denb", "lq");
     genval("denc", "lr");
@@ -195,10 +248,10 @@ function runprog(i) {
     if (lc <= 3)
         highlightline(lc);
     else {
+        document.getElementById("fconclusions").innerHTML = conclusion;
         document.getElementById("line3").setAttribute("style", "color:black;");
         document.getElementById("mrun").disabled = true;
         var ms = window.matchMedia("screen and (max-width:950px)");
-        console.log(ms);
         widthcheck(ms);
         ms.addListener(widthcheck);
         document.getElementById("mrun").disabled = true;
@@ -318,5 +371,19 @@ function amplitud(a3, b3, b4, c1, c3, c4, t) {
     } else {
         cal = a3 + b3 * Math.pow(Math.E, c3 * t) * Math.cos(c4 * t) + b4 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
     }
+    return cal;
+
+}
+
+function amplitudeden(coo1, coo2, coo3, t) {
+    var cal;
+    cal = coo1 - coo1 * Math.pow(Math.E, -1 * coo2 * t) - coo3 * Math.pow(Math.E, -1 * coo2 * t) * t;
+    return cal.toFixed(4);
+
+}
+
+function amplitudede(coo1, coo2, coo3, t) {
+    var cal;
+    cal = coo1 - coo1 * Math.pow(Math.E, -1 * coo2 * t) - coo3 * Math.pow(Math.E, -1 * coo2 * t) * t;
     return cal;
 }

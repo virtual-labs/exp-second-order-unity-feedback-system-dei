@@ -3,20 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Virtual Labs Dei-Linear Control Systems</title>
-	<link rel = "icon" href = 
-"https://www.vlab.co.in/images/logo.jpg" 
-        type = "image/x-icon">
-	<link rel="stylesheet" type="text/css" href="src/css/main.css">
+
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
 </head>
 <body>
 
 	<header>
-	<button class="menu-btn" onclick="dispmenu(this )"><div class="container" >
-  <div class="bar1"></div>
-  <div class="bar2"></div>
-  <div class="bar3"></div>
-</div></button>
+
 	<select id="pagechanger">
 		<option value="1" >
 			 To determine Step response of 2nd order system 
@@ -25,49 +18,28 @@
 			To determine Impulse response of 2nd order system 
 		</option>
 	</select>
-	<a href="../simulation_1/index.html" id="sm1" style="display:none;"></a>
-	<a href="../simulation_1/index1.html" id="sm2" style="display: none;"></a>
+
+	<a href="./index.html" id="sm1" style="display:none;"></a>
+	<a href="./index1.html" id="sm2" style="display: none;"></a>
 	<button id="input_button" onclick="changepage()">Select</button>
 </header>
-<nav class="side-nav" id="navbar">
-		<div class="nav-element">
-			<a href="../index.html" >Aim</a>
-		</div>
-		<div class="nav-element">
-			<a href="../theory.html" >Theory</a>
-		</div>
-		<div class="nav-element">
-			<a href="../objective.html" >Objective</a>
-		</div>
-		<div class="nav-element">
-			<a href="../pretest.html" >Pretest</a>
-		</div>
-		<div class="nav-element">
-			<a href="../procedure.html" >Procedure</a>
-		</div>
-		<div class="nav-element">
-			<a href="index.html" ><span class="cp">Simulation</span></a>
-		</div>
-		<div class="nav-element">
-			<a href="../posttest.html" >Posttest</a>
-		</div>
-		<div class="nav-element">
-			<a href="../references.html" >References</a>
-		</div>
-		<div class="nav-element">
-			<a href="../feedback.html" >Feedback</a>
-		</div>
-		</nav>
+
 	<div id="simulation-cont">
 	<div id="enter-val">
 		<div id="input-statements">	
+			<h3 class="mhead" style="color:cadetblue; text-align:center; margin:5px 0px">USER INPUTS</h3>
+				<div class="numerator">
+					<h3>Coeffecients of Numerator Polynomials</h3>
+					<input type="range" name="valuea"  min="1" max="10" list = "datlist" id="numc" onchange="showval() " onmousemove="showval()" class="range-input" value="1">
+					<p>c:<span id="lc"></span></p>
+				</div>
 				<div class="denominator">
 					<h3>Enter Denominator values</h3>
 					<input type="range" name="valuea"  min="1" max="5" list = "datlist" id="dena" onchange="showval() " onmousemove="showval()" class="range-input" value="0">
 					<p>p:<span id="lp"></span></p>
-					<input type="range" name="valuea"  min="1" max="5" list = "datlist" id="denb" onchange="showval() " value="0" onmousemove="showval()" class="range-input">
+					<input type="range" name="valuea"  min="1" max="3" list = "datlist" id="denb" onchange="showval() " value="0" onmousemove="showval()" class="range-input">
 					<p>q:<span id="lq"></span></p>
-					<input type="range" name="valuea"  min="1" max="5" list = "datlist" id="denc" onchange="showval() " value="0" onmousemove="showval()" class="range-input">
+					<input type="range" name="valuea"  min="0" max="5" list = "datlist" id="denc" onchange="showval() " value="0" onmousemove="showval()" class="range-input">
 					<p>r:<span id="lr"></span></p>
 				</div>
 				
@@ -86,16 +58,6 @@
 				<option value="10" label="100%"></option>
 			</datalist>
 		</div>
-		<div class="displayed-eqn">
-			<div class = "display-eqn">
-			Generated Equation:
-				<div id = "generated_eqn">$${ \frac{1}{ps^2 + qs + r} }$$</div>
-			</div>
-			<div class = "display-eqn">
-			After feedback:
-				<div id = "fgenerated_eqn">$${ \frac{1}{ps^2 + qs + r + 1} }$$</div>
-			</div>
-		</div>
 	</div>
 	<div class="matlab-working mat" id="matwork" title="Please enter the values of coeffecients of the equation first">
 		<div class="program" >
@@ -108,6 +70,7 @@
 				<span id="line2">Closed loop transfer equation</span><br>
 				<span id="out2" class="genout"></span>
 				<span id="line3">Impulse response graph</span><br>
+				<div id="tanswer"></div>
 				<div class="mob-chart">
 				<div id="chartcont">
 					<canvas id="chartmine" style="width:100%;"></canvas>
@@ -129,13 +92,14 @@
 		<div id="chartcont1">
 			<canvas id="myChart" style="width:100%;"></canvas>
 		</div>
-		<div style="position: relative; top:40px">
-				<div id="tanswer"></div>
-		</div>
 	</div>
 </div>
+	<div class="conclusions">
+		<h1> Conclusions</h1>
+		<span id="fconclusions">Conclusions will show here</span>
+	</div>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-	<script type="text/javascript" src="src/js/main1.js"></script>
+	<script type="text/javascript" src="./js/main1.js"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
 </body>
 </html>
