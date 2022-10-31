@@ -14,7 +14,9 @@ header {
     font-size: 20px;
     outline: none;
     position: relative;
+
     left: 10%;
+
     top: 2.5vh;
 }
 
@@ -31,7 +33,9 @@ header {
     color: whitesmoke;
     height: 30px;
     width: 100px;
+
     left: 15%;
+
     border: none;
 }
 
@@ -48,14 +52,17 @@ body {
 #enter-val {
     width: 30%;
     float: left;
+
     height: 65vh;
 }
 
 #input-statements {
     width: 100%;
+
     height: 70vh;
     background-color: aliceblue;
     padding: 10px 0;
+
 }
 
 .numerator {
@@ -64,6 +71,7 @@ body {
     color: cadetblue;
     text-align: center;
 }
+
 
 .numerator h3 {
     position: relative;
@@ -74,6 +82,7 @@ body {
 
 #input-statements p {
     margin: 15px 0px;
+
 }
 
 #datalist option {
@@ -86,6 +95,7 @@ body {
     color: cadetblue;
     text-align: center;
 }
+
 
 .denominator h3 {
     font-size: 15px;
@@ -103,8 +113,10 @@ body {
     cursor: pointer;
 }
 
+
 .displayed-eqn {
     height: 25%;
+
     width: 100%;
     background-color: aliceblue;
     color: cadetblue;
@@ -115,7 +127,9 @@ body {
     padding: 0 20px;
     top: 10px;
     position: relative;
+
     height: 80%;
+
 }
 
 #generated_eqn {
@@ -163,6 +177,7 @@ body {
     width: 35%;
     display: inline-block;
     background-color: aliceblue;
+
     height: 75vh;
 }
 
@@ -176,7 +191,9 @@ body {
 
 .prog-window {
     background-color: whitesmoke;
+
     height: 75%;
+
     position: relative;
     left: 3%;
     width: 90%;
@@ -186,6 +203,7 @@ body {
     overflow-y: scroll;
     padding-bottom: 20px;
 }
+
 
 .mhead {
     position: relative;
@@ -254,6 +272,7 @@ body {
 
 #chartcont1 {
     width: 90%;
+
     height: 300px;
     padding: 10px;
     position: relative;
@@ -316,6 +335,7 @@ body {
     cursor: pointer;
 }
 
+
 header {
     background-color: white;
 }
@@ -331,6 +351,7 @@ header {
     font-size: 20px;
     color: cadetblue;
 }
+
 
 .conclusions {
     border-top: 4px solid dodgerblue;
@@ -374,6 +395,7 @@ header {
     }
 }
 
+
 @media screen and (max-height: 680px) {
     #enter-val {
         height: 79vh;
@@ -412,6 +434,7 @@ header {
 @media screen and (max-width: 400px) {
     #pagechanger {
         top: 0.5vh;
+
         left: 1px;
         font-size: 14px;
     }
@@ -469,7 +492,9 @@ header {
 @media screen and (max-width: 600px) {
     @media screen and (max-height: 750px) {
         #enter-val {
+
             height: 62vh;
+
         }
     }
 }

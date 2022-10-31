@@ -14,11 +14,13 @@ function changepage() {
 }
 var conclusion;
 
+
 function addval() {
     lab = [];
     dat = [];
     var nums, dens;
     var a = "0";
+
     var b = document.getElementById("numc").value;
     var r = document.getElementById("denc").value;
     var p = document.getElementById("dena").value;
@@ -33,6 +35,7 @@ function addval() {
     b1 = parseInt(b);
     a2 = parseInt(p);
     b2 = parseInt(q);
+
 
     c2 = parseInt(r) + b1;
     var omega = Math.sqrt(c2);
@@ -114,6 +117,7 @@ function addval() {
             dat.push(amplitudede(co1, co2, co3, i));
             lab.push(i.toFixed(1));
         }
+
     }
     lc = 1;
     document.getElementById("line1").setAttribute("style", "color:blue");
@@ -127,7 +131,9 @@ function addval() {
         document.getElementById(out).setAttribute("style", "display:none");
     }
     if (mto) {
+
         document.getElementById("fconclusions").innerHTML = "Conclusions will show here";
+
         document.getElementById("matwork").title = "";
         document.getElementById("mrun").disabled = false;
         document.getElementById("matwork").setAttribute("style", "opacity:1");
@@ -158,7 +164,6 @@ function addval() {
                 denominator = denominator + c2.toFixed();
         denominator = denominator + "}}$$";
         var eqn = numerator + denominator;
-
         document.getElementById("out2").innerHTML = eqn;
         var numerator = "$${\\frac{";
         if (a != 0)
@@ -185,11 +190,11 @@ function addval() {
         denominator = denominator + "}}$$";
         eqn = numerator + denominator;
 
-
         var output;
         document.getElementById("out1").innerHTML = eqn;
         if (c1 > 0)
             eqn = "$${" + a3.toFixed(5) + b3.toFixed(4) + " * e^{" + c3.toFixed(2) + "*t} * " + "cos({" + c4.toFixed(2) + "})....}$$" + "   $${...." + b4.toFixed(4) + " *  e^{" + c3.toFixed(2) + "*t} * " + "sin({" + c4.toFixed(2) + "}) " + "}$$";
+
         else if (c1 == 0)
             eqn = "$${" + co1.toFixed(5) + "-1*" + co1.toFixed(4) + "* e^{-1*" + co2.toFixed(2) + "*t}" + "-1*" + co3.toFixed(4) + "*e^{-1*" + co2.toFixed(2) + "*t}*t}$$";
         else
@@ -200,7 +205,6 @@ function addval() {
         var ms = window.matchMedia("(max-width:950px)");
         cwidth(ms);
         ms.addListener(cwidth);
-
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, "out1"]);
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, "out2"]);
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, "tanswer"]);
@@ -368,6 +372,7 @@ function amplitud(a3, b3, b4, c1, c3, c4, t) {
         cal = a3 + b3 * Math.pow(Math.E, c3 * t) * Math.cos(c4 * t) + b4 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
     }
     return cal;
+
 }
 
 function amplitudeden(coo1, coo2, coo3, t) {
@@ -381,5 +386,4 @@ function amplitudede(coo1, coo2, coo3, t) {
     var cal;
     cal = coo1 - coo1 * Math.pow(Math.E, -1 * coo2 * t) - coo3 * Math.pow(Math.E, -1 * coo2 * t) * t;
     return cal;
-
 }

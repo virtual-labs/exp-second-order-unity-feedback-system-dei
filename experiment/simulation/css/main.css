@@ -1,4 +1,3 @@
-/* You CSS goes in here */
 
 h1 {
     background-color: beige;
@@ -67,6 +66,7 @@ body {
     text-align: center;
 }
 
+
 .numerator h3 {
     position: relative;
     top: 5px;
@@ -76,6 +76,7 @@ body {
 
 #input-statements p {
     margin: 15px 0px;
+
 }
 
 #datalist option {
@@ -104,6 +105,7 @@ body {
 .range-input:hover {
     cursor: pointer;
 }
+
 
 .displayed-eqn {
     height: 25%;
@@ -188,7 +190,6 @@ body {
     overflow-y: scroll;
     padding-bottom: 20px;
 }
-
 .mhead {
     position: relative;
     left: 5%;
@@ -318,6 +319,7 @@ body {
     cursor: pointer;
 }
 
+
 header {
     background-color: white;
 }
@@ -416,6 +418,7 @@ header {
 
 @media screen and (min-height: 1000px) {
     #enter-val {
+
         height: 62vh;
     }
     .prog-window {

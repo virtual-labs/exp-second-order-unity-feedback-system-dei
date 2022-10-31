@@ -12,6 +12,7 @@ function changepage() {
     else
         document.getElementById("sm2").click();
 }
+
 var conclusion;
 
 function addval() {
@@ -19,7 +20,9 @@ function addval() {
     dat = [];
     var nums, dens;
     var a = "0";
+
     var b = document.getElementById("numc").value;
+
     var r = document.getElementById("denc").value;
     var p = document.getElementById("dena").value;
     var q = document.getElementById("denb").value;
@@ -32,6 +35,7 @@ function addval() {
     b1 = parseInt(b);
     a2 = parseInt(p);
     b2 = parseInt(q);
+
     c2 = parseInt(r) + b1;
     var omega = Math.sqrt(c2);
     var zeta = b2 / 2 / omega;
@@ -52,6 +56,7 @@ function addval() {
     } else
         c4 = Math.sqrt(c1);
     var a3 = 1 / a2 / c4;
+
     if (c1 != 0) {
         var maxl, stepl;
         if (amplitude(a3, c1, c3, c4, 10) == amplitude(a3, c1, c3, c4, 9.8)) {
@@ -149,7 +154,6 @@ function addval() {
                 denominator = denominator + c2.toFixed();
         denominator = denominator + "}}$$";
         var eqn = numerator + denominator;
-
         document.getElementById("out2").innerHTML = eqn;
         var numerator = "$${\\frac{";
         if (a != 0)
@@ -177,6 +181,7 @@ function addval() {
         eqn = numerator + denominator;
 
 
+
         var output;
         document.getElementById("out1").innerHTML = eqn;
         if (c1 != 0) {
@@ -199,6 +204,7 @@ function addval() {
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, "tanswer"]);
     } else {
         mto = 1;
+
         document.getElementById("fconclusions").innerHTML = "Conclusions will show here";
         document.getElementById("mrun").disabled = true;
         document.getElementById("mrun").classList.remove('mrunenabled', 'mrundisabled');
@@ -236,6 +242,7 @@ function runprog(i) {
     if (lc <= 3)
         highlightline(lc);
     else {
+
         document.getElementById("fconclusions").innerHTML = conclusion;
         document.getElementById("line3").setAttribute("style", "color:black;");
         document.getElementById("mrun").disabled = true;
@@ -351,6 +358,7 @@ function amplitude(a3, c1, c3, c4, t) {
 
 function amplitud(a3, c1, c3, c4, t) {
     var cal;
+
     cal = a3 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
 
     return cal;
