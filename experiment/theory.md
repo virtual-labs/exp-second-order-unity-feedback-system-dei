@@ -6,7 +6,7 @@
 <strong><em>Transient Response:</em></strong> The part of the time response which goes to zero after large interval of time is known as transient response.<br>
 <strong><em>Steady State Response:</em></strong> The part of response that means even after the transients have died out is said to be steady state response.
 <br><br>
-The total response of a system is sum of <em>transient response</em> and <em>steady state response.</em> 
+The total response of a system is sum of <em>transient response</em> and <em>steady state response.</em> <br>
   C(t)=C<sub>tr</sub>(t) + C<sub>ss</sub>(t)
 <br>
 <br>
