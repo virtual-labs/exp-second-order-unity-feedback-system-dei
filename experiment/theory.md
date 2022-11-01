@@ -7,7 +7,7 @@
 <strong><em>Steady State Response:</em></strong> The part of response that means even after the transients have died out is said to be steady state response.
 <br><br>
 The total response of a system is sum of <em>transient response</em> and <em>steady state response.</em> 
-$${C(t)=C<sub>tr</sub>(t) + C<sub>ss</sub>(t)}$$
+  C(t)=C<sub>tr</sub>(t) + C<sub>ss</sub>(t)
 <br>
 <br>
 <strong><em> Time Response Specification Parameters:</em></strong> The transfer function of 2<sub>nd</sub> order system is generally represented by the following transfer funnction:<br>
