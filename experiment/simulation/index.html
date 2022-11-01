@@ -3,12 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
 
 	<header>
-	
 	<select id="pagechanger">
 		<option value="1" selected>
 			 To determine Step response of 2nd order system 
@@ -17,8 +17,9 @@
 			To determine Impulse response of 2nd order system 
 		</option>
 	</select>
-	<a href="../simulation_1/index.html" id="sm1" style="display:none;"></a>
-	<a href="../simulation_1/index1.html" id="sm2" style="display: none;"></a>
+
+	<a href="./index.html" id="sm1" style="display:none;"></a>
+	<a href="./index1.html" id="sm2" style="display: none;"></a>
 	<button id="input_button" onclick="changepage()">Select</button>
 </header>
 	<div id="simulation-cont">
@@ -36,7 +37,9 @@
 					<p>p:<span id="lp"></span></p>
 					<input type="range" name="valuea"  min="1" max="5" list = "datlist" id="denb" onchange="showval() " value="0" onmousemove="showval()" class="range-input">
 					<p>q:<span id="lq"></span></p>
-					<input type="range" name="valuea"  min="1" max="5" list = "datlist" id="denc" onchange="showval() " value="0" onmousemove="showval()" class="range-input">
+
+					<input type="range" name="valuea"  min="0" max="5" list = "datlist" id="denc" onchange="showval() " value="0" onmousemove="showval()" class="range-input">
+
 					<p>r:<span id="lr"></span></p>
 				</div>
 				
@@ -98,6 +101,7 @@
 	</div>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 	<script type="text/javascript" src="./js/main.js"></script>
+
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
 </body>
 </html>
