@@ -1,4 +1,4 @@
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default"></script>
 
 <strong>Theory:</strong> The time response has utmost importance for the design and analysis of control systems because these are inherently time domain systems where time is independent variable. During the analysis of response, the variation of output with respect to time can be studied and it is known as time response. To obtain satisfactory performance of the system with respect to time must be within the specified limits. From time response analysis and corresponding results, the stability of the system, accuracy of the system, and complete evaluation can be studied easily. Due to the application of an excitation to a system, the response of the system is known as time response and it is a transient response; steady-state response.
 <br>
