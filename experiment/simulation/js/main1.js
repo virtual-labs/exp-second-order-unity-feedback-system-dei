@@ -4,6 +4,9 @@ var lab = [],
 var eqn;
 var poles = [],
     roots = [];
+var impulseresponse;
+ var lab_imp = [],
+     dat_imp = [];
 
 function changepage() {
     var x = document.getElementById("pagechanger").value;
@@ -12,7 +15,6 @@ function changepage() {
     else
         document.getElementById("sm2").click();
 }
-
 var conclusion;
 
 function addval() {
@@ -20,9 +22,7 @@ function addval() {
     dat = [];
     var nums, dens;
     var a = "0";
-
     var b = document.getElementById("numc").value;
-
     var r = document.getElementById("denc").value;
     var p = document.getElementById("dena").value;
     var q = document.getElementById("denb").value;
@@ -35,10 +35,14 @@ function addval() {
     b1 = parseInt(b);
     a2 = parseInt(p);
     b2 = parseInt(q);
-
     c2 = parseInt(r) + b1;
     var omega = Math.sqrt(c2);
     var zeta = b2 / 2 / omega;
+    var risetime = 1.8/omega;
+    var omegad = omega * Math.sqrt(1-zeta*zeta);
+    var peaktime = Math.PI/omegad;
+    var settingtime = 3/omega/zeta;
+    var maxos = Math.pow(Math.E,-1*(Math.PI*zeta/Math.sqrt(1-zeta*zeta)));
     if (zeta == 0)
         conclusion = "The amplitude of the system response does not change with time, therefore system is undamped";
     else if (zeta > 0 && zeta < 1)
@@ -47,17 +51,16 @@ function addval() {
         conclusion = "The system response is ramp up quickly to the equilibrium position without oscillating, and passes it once at most. Therefore system is critical damped";
     else
         conclusion = "The system response moves more slowly toward equilibrium than critical damped system, therefore system is over damped."
-    var c3 = -1 * b2 / 2 / a2;
+    /*var c3 = -1 * b2 / 2 / a2;
     var c1 = 4 * a2 - b2 * b2 / c2;
-    c1 = c1 / a2 / a2
+    det = c1 / a2 / a2
         //    console.log(c1);
     if (c1 < 0) {
-        c4 = Math.sqrt(-1 * c1);
+        c4 = Math.sqrt(-1 * det);
     } else
-        c4 = Math.sqrt(c1);
+        c4 = Math.sqrt(det);
     var a3 = 1 / a2 / c4;
-
-    if (c1 != 0) {
+    if (det != 0) {
         var maxl, stepl;
         if (amplitude(a3, c1, c3, c4, 10) == amplitude(a3, c1, c3, c4, 9.8)) {
             maxl = 10;
@@ -110,7 +113,9 @@ function addval() {
             lab.push(i.toFixed(1));
         }
 
-    }
+    }*/
+         impulseresponse(b1, a2, b2, c2);
+
     lc = 1;
     document.getElementById("line1").setAttribute("style", "color:blue");
     document.getElementById("chartcont").setAttribute("style", "display:none");
@@ -154,6 +159,7 @@ function addval() {
                 denominator = denominator + c2.toFixed();
         denominator = denominator + "}}$$";
         var eqn = numerator + denominator;
+
         document.getElementById("out2").innerHTML = eqn;
         var numerator = "$${\\frac{";
         if (a != 0)
@@ -181,17 +187,18 @@ function addval() {
         eqn = numerator + denominator;
 
 
-
         var output;
         document.getElementById("out1").innerHTML = eqn;
-        if (c1 != 0) {
+        /*if (c1 != 0) {
             if (c1 > 0)
                 eqn = "$${" + a3.toFixed(5) + " * e^{" + c3.toFixed(2) + "*t} * " + "sin({" + c4.toFixed(2) + "*t}) " + "}$$";
             else
                 eqn = "$${" + a3.toFixed(5) + " * e^{" + c3.toFixed(2) + "*t} * " + "sinh({" + c4.toFixed(2) + "*t}) " + "}$$";
         } else {
             eqn = "$${" + co1.toFixed(5) + "*e^{-1*" + co2.toFixed(2) + "*t}*" + "t}$$"
-        }
+        }*/
+        eqn = impulseresponse;
+        eqn = eqn+"<br><br>Rise Time:" + risetime.toFixed(2)+ "<br><br>Peak Time:"+peaktime.toFixed(2)+"<br><br>Maximum Overshoot:"+maxos.toFixed(2)+"<br><br>Settling Time:"+settingtime.toFixed(2);
         document.getElementById("tanswer").innerHTML = eqn;
         var j, k;
 
@@ -204,7 +211,6 @@ function addval() {
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, "tanswer"]);
     } else {
         mto = 1;
-
         document.getElementById("fconclusions").innerHTML = "Conclusions will show here";
         document.getElementById("mrun").disabled = true;
         document.getElementById("mrun").classList.remove('mrunenabled', 'mrundisabled');
@@ -242,12 +248,11 @@ function runprog(i) {
     if (lc <= 3)
         highlightline(lc);
     else {
-
         document.getElementById("fconclusions").innerHTML = conclusion;
         document.getElementById("line3").setAttribute("style", "color:black;");
         document.getElementById("mrun").disabled = true;
         var ms = window.matchMedia("screen and (max-width:950px)");
-        console.log(ms);
+
         widthcheck(ms);
         ms.addListener(widthcheck);
         document.getElementById("mrun").disabled = true;
@@ -263,13 +268,13 @@ function cwidth(ms) {
         var chartplot = document.getElementById("myChart").getContext("2d");
     if (window.ch != undefined)
         window.ch.destroy();
-    const labels = lab;
+    const labels = lab_imp;
     const data = {
         labels: labels,
 
         datasets: [{
             label: "Amplitude",
-            data: dat,
+            data: dat_imp,
             pointRadius: 1,
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
@@ -349,27 +354,89 @@ function dispmenu(val) {
     }
 }
 
-function amplitude(a3, c1, c3, c4, t) {
-    var cal;
-    cal = a3 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
-    cal = cal.toFixed(4);
-    return cal;
-}
+function impulseresponse(b1, a2, b2, c2) {
+     lab_imp = [];
+     dat_imp = [];
+     var co1, co2, co3;
+     var stepl, maxl;
+     var det = 4 * a2 * c2 - Math.pow(b2, 2);
+     if (det < 0)
+         det = -1 * det;
 
-function amplitud(a3, c1, c3, c4, t) {
-    var cal;
+     var sqd = Math.sqrt(det)
+     if (det != 0) {
+         co1 = 2 * b1 / sqd;
+         co2 = -1 * b2 / 2 / a2;
+         co3 = sqd / 2 / a2;
+         impulseresponse = "$${" +co1.toFixed(2)+"*e^{"+co2.toFixed(2)+"*t}*sin({"+ co3.toFixed(2)+"*t})}$$"
+         if (amplitudei1(co1, co2, co3, 1, 10) == amplitudei1(co1, co2, co3, 1, 9.8)) {
+             maxl = 10;
+             stepl = 0.05;
+         } else if (amplitudei1(co1, co2, co3, 1, 25) == amplitudei1(co1, co2, co3, 1, 24.5)) {
+             maxl = 25;
+             stepl = 0.125;
+         } else if (amplitudei1(co1, co2, co3, 1, 50) == amplitudei1(co1, co2, co3, 1, 49)) {
+             maxl = 50;
+             stepl = 0.25;
+         } else if (amplitudei1(co1, co2, co3, 1, 100) == amplitudei1(co1, co2, co3, 1, 98)) {
+             maxl = 100;
+             stepl = 0.5;
+         } else if (amplitudei1(co1, co2, co3, 1, 200) == amplitudei1(co1, co2, co3, 1, 196)) {
+             maxl = 200;
+             stepl = 1;
+         } else {
+             maxl = 1;
+             stepl = 0.005;
+         }
+         for (let i = 0; i <= maxl; i = i + stepl) {
 
-    cal = a3 * Math.pow(Math.E, c3 * t) * Math.sin(c4 * t)
+             dat_imp.push(amplitudei1(co1, co2, co3, 0, i));
+             lab_imp.push(i.toFixed(1));
+         }
+     } else {
+        impulseresponse = "$${" + co1.toFixed(2) +"*e^{-1*t}*t}$$";
+         co1 = 2 * b2 / b1;
+         if (amplitudei2(co1, 1, 10) == amplitudei2(co1, 1, 9.8)) {
+             maxl = 10;
+             stepl = 0.05;
+         } else if (amplitudei2(co1, 1, 25) == amplitudei2(co1, 1, 24.5)) {
+             maxl = 25;
+             stepl = 0.125;
+         } else if (amplitudei2(co1, 1, 50) == amplitudei2(co1, 1, 49)) {
+             maxl = 50;
+             stepl = 0.25;
+         } else if (amplitudei2(co1, 1, 100) == amplitudei2(co1, 1, 98)) {
+             maxl = 100;
+             stepl = 0.5;
+         } else if (amplitudei2(co1, 1, 200) == amplitudei2(co1, 1, 196)) {
+             maxl = 200;
+             stepl = 1;
+         } else {
+             maxl = 1;
+             stepl = 0.005;
+         }
 
-    return cal;
-}
+         for (let i = 0; i <= maxl; i = i + stepl) {
 
-function amplitudeden(coo1, coo2, t) {
-    var cal = coo1 * Math.pow(Math.E, -1 * coo2 * t) * t;
-    return cal.toFixed(4);
-}
+             dat_imp.push(amplitudei2(co1, 0, i));
+             lab_imp.push(i.toFixed(1));
+         }
+     }
+ }
 
-function amplitudede(coo1, coo2, t) {
-    var cal = coo1 * Math.pow(Math.E, -1 * coo2 * t) * t;
-    return cal;
-}
+function amplitudei2(v1, str, t) {
+     var cal = v1 * Math.pow(Math.E,-1 * t) * t;
+     if (str)
+         return cal.toFixed(4);
+     else
+         return cal;
+ }
+
+ function amplitudei1(v1, v2, v3, str, t) {
+     var cal;
+     cal = v1 * (Math.pow(Math.E, t * v2) * Math.sin(v3 * t));
+     if (str)
+         return cal.toFixed(4);
+     else
+         return cal;
+ }
