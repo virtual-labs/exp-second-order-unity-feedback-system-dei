@@ -1,10 +1,38 @@
-### Procedure for the experiment is as follows:
+<p style="margin-left:0px;">3.1  Procedure: Select “To determine Step response of 2nd order system”.</p>
+<p style="margin-left:20px;">3.1.1 User Input:</p>
+             <p style="margin-left:30px;">3.1.1.1 Firstly, adjust the values of the coefficient c of a numerator polynomial by 
+                            sliding the slider.<br>
+             3.1.1.2 Now adjust the value of coefficients p, q and r of a denominator polynomial by sliding
+                            the slider.<br>
+             3.1.1.3 Press “Submit” button to submit the values of coefficients of numerator and 
+                           denominator polynomial.</p>
 
-1. Select the experiment you want to perform by clicking on its heading.
-2. To enter the required variable values for the chosen experiment, adjust the slider values.
-3. To enter the variable values, press the submit button.
-4. If input parameter values are acceptable, the calculations window will be accessable.
-5. Click the run button to begin executing the commands to obtain the calculated  values of required parameters in the calculations window, line by line.
-6. After each click of run button, the calculations window will display the results of each step.
-7. When the entire program is executed, the final plot and results obtained on the right window (for desktop/laptops or wide screens), while they are displayed inside the calculations window, below the final program line (incase of smart phones/small screens).
-8. A conclusion based on the results obtained will be displayed in the Conclusions window, which is located in the bottom most section
+<p style="margin-left:20px;">3.1.2 Calculations:</p>
+             <p style="margin-left:30px;">3.1.2.1 Click on the “Run” button to obtain the input open loop transfer function.<br>
+             3.1.2.2 Click on “Run” button again to obtain corresponding closed loop transfer function.<br>
+             3.1.2.3 Again, click on “Run” button to get the step response in time domain and the time 
+                           domain parameters.</p>
+
+<p style="margin-left:20px;">3.1.3 Results:</p>
+             <p style="margin-left:30px;">3.1.3.1 Once more click on the “Run” button to obtain the step response plot in s-plane
+                            in the result section and conclusion in the Conclusions section (bottom).</p>
+
+<p style="margin-left:0px;">3.2  Procedure: Select “To determine Impulse response of 2nd order system”.</p>
+
+<p style="margin-left:20px;">3.2.1 User Input:</p>
+             <p style="margin-left:30px;">3.2.1.1 Firstly, adjust the values of the coefficient c of a numerator polynomial by 
+                            sliding the slider.<br>
+             3.2.1.2 Now adjust the value of coefficients p, q and r of a denominator polynomial by sliding
+                            the slider.<br>
+             3.2.1.3 Press “Submit” button to submit the values of coefficients of numerator and 
+                           denominator polynomial.</p>
+
+<p style="margin-left:20px;">3.2.2 Calculations:</p>
+             <p style="margin-left:30px;">3.2.2.1 Click on the “Run” button to obtain the input open loop transfer function.<br>
+             3.2.2.2 Click on “Run” button again to obtain corresponding closed loop transfer function.<br>
+             3.2.2.3 Again, click on “Run” button to get the impulse response in time domain and the time 
+                           domain parameters.</p>
+
+<p style="margin-left:20px;">3.2.3 Results:
+             <p style="margin-left:30px;">3.2.3.1 Once one more click on the “Run” button to obtain the impulse response plot in s-plane
+                            in the result section and conclusion in the Conclusions section (bottom).</p>
