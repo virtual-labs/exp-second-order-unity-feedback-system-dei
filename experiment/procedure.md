@@ -15,8 +15,7 @@
                            domain parameters.</p>
 
 <p style="margin-left:20px;"><strong>3.1.3 Results:</strong></p>
-             <p style="margin-left:30px;">3.1.3.1 Once more click on the “Run” button to obtain the step response plot in s-plane
-                            in the result section and conclusion in the Conclusions section (bottom).</p>
+             <p style="margin-left:30px;">3.1.3.1 Once more, click on the “Run” button to obtain the step response plot in the result section and conclusions of the experiement in the Conclusion Section (bottom).</p>
 
 <p style="margin-left:0px;"><strong>3.2  Procedure: Select “To determine Impulse response of 2nd order system”.</strong></p>
 
@@ -35,5 +34,4 @@
                            domain parameters.</p>
 
 <p style="margin-left:20px;"><strong>3.2.3 Results:</strong></p>
-             <p style="margin-left:30px;">3.2.3.1 Once one more click on the “Run” button to obtain the impulse response plot in s-plane
-                            in the result section and conclusion in the Conclusions section (bottom).</p>
+             <p style="margin-left:30px;">3.2.3.1 Once more, click on the “Run” button to obtain the impulse response plot in the result section and conclusions of the experiment in the Conclusion Section (bottom).</p>
