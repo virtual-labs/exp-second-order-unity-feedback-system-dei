@@ -1,0 +1,59 @@
+{
+    "version": 2.0,
+    "questions": [{
+            "question": "When the value of damping factor(ξ) is 1, then system is?",
+            "answers": {
+                "a": "Underdamped",
+                "b": "Critically damped",
+                "c": "Overdamped",
+                "d": "Undamped"
+            },
+            "correctAnswer": "b",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "When the value of damping factor(ξ) is 0<ξ<1, then system is?",
+            "answers": {
+                "a": "Underdamped",
+                "b": "Critically damped",
+                "c": "Overdamped",
+                "d": "Undamped"
+            },
+            "correctAnswer": "a",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "When the value of damping factor(ξ) is ξ>1, then system is?",
+            "answers": {
+                "a": "Underdamped",
+                "b": "Critically damped",
+                "c": "Overdamped",
+                "d": "Undamped"
+            },
+            "correctAnswer": "c",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "When the value of damping factor(ξ) is ξ=0, then system is?",
+            "answers": {
+                "a": "Underdamped",
+                "b": "Critically damped",
+                "c": "Overdamped",
+                "d": "Undamped"
+            },
+            "correctAnswer": "d",
+            "difficulty": "beginner"
+        },
+        {
+            "question": "Standard characteristic equation of 2nd order system is?",
+            "answers": {
+                "a": "s^2+2ξω<sub>n</sub>s+ω<sub>n</sub><sup>2</sup>=0",
+                "b": "s^2+ξω<sub>n</sub>s+ω<sub>n</sub><sup>2</sup>=0",
+                "c": "s^2+2ξω<sub>n</sub>s+ω<sub>n</sub>=0",
+                "d": "s^2+ξω<sub>n</sub>s+ω<sub>n</sub>=0"
+            },
+            "correctAnswer": "a",
+            "difficulty": "beginner"
+        }
+    ]
+}
